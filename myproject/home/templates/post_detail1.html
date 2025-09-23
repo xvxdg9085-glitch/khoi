@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %}The Bloom Room {%endblock %}
+<!-- prettier-ignore -->
+{% block content %}
+<div class="container mt-5 mb-5 hero__v1 section" style="margin-top: 200px">
+  <h1>{{ post.title }}</h1>
+  <div style="text-align: justify">{{ post.body|safe }}</div>
+  <a
+    style="
+      text-decoration: none;
+      font-weight: bold;
+      color: black !important;
+      font-family: consolas;
+      font-size: 20px;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 5px;
+    "
+    href="{% url 'post' %}"
+  >
+    Back to list
+  </a>
+{% endblock %}
+
+<style>
+  .fixed-image {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>

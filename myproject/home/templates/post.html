@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %}The Bloom Room {%endblock %}
+<!-- prettier-ignore -->5
+{% block content %}
+
+<div class="container mt-5 mb-5 hero__v1 section">
+  <h1 class="mb-4">Post List</h1>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in posts %}
+    <div class="col-lg-4">
+      <div class="card h-100">
+        {% if post.image %}
+        <img
+          src="{{ post.image.url }}"
+          class="card-img-top img-fluid fixed-image"
+          style="height: 300px; object-fit: cover; border: 1px solid black"
+          loading="lazy"
+          alt="{{ post.title }}"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">
+            <a
+              href="{% url 'post_detail' post.id %}"
+              style="text-decoration: none; color: black !important"
+            >
+              {{ post.title }}
+            </a>
+          </h5>
+          <p class="card-text">
+            <small class="text-muted"
+              >Published on: {{ post.date|date:"F j, Y" }}</small
+            >
+          </p>
+          <a href="{% url 'post_detail' post.id %}" class="btn btn-primary"
+            >Đọc tiếp</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
+
+<style>
+  .fixed-image {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>

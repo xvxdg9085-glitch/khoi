@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %}The Bloom Room {%endblock %}
+<!-- prettier-ignore -->
+{% block content %}
+<!-- ======= Pricing =======-->
+        <section class="section pricing__v2" id="pricing">
+          <div class="container">
+            <div class="row mb-5">
+              <div class="col-md-5 mx-auto text-center"><span class="subtitle text-uppercase mb-3" data-aos="fade-up" data-aos-delay="0">Pricing</span>
+                <h2 class="mb-3" data-aos="fade-up" data-aos-delay="100">Plan for every budget</h2>
+                <p data-aos="fade-up" data-aos-delay="200">Experience the future of finance with our secure, efficient, and user-friendly financial services</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-5 rounded-4 price-table h-100">
+                  <h3>Personal</h3>
+                  <p>Choose a plan that fits your personal financial needs and start managing your finances more effectively.</p>
+                  <div class="price mb-4"><strong>$7</strong><span>/ month</span></div>
+                  <div><a class="btn" href="#">Get Started</a></div>
+                </div>
+              </div>
+              <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+                <div class="p-5 rounded-4 price-table popular h-100">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h3 class="mb-3">Business</h3>
+                      <p>Optimize your business financial operations with our tailored business plans.</p>
+                      <div class="price mb-4"><strong class="me-1">$29</strong><span>/ month</span></div>
+                      <div><a class="btn btn-white hover-outline" href="#">Get Started</a></div>
+                    </div>
+                    <div class="col-md-6 pricing-features">
+                      <h4 class="text-uppercase fw-bold mb-3">Features</h4>
+                      <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li class="d-flex gap-2 align-items-start mb-0"><span class="icon rounded-circle position-relative mt-1"><i class="bi bi-check"></i></span><span>Personalized financial insights and reports</span></li>
+                        <li class="d-flex gap-2 align-items-start mb-0"><span class="icon rounded-circle position-relative mt-1"><i class="bi bi-check"></i></span><span>Priority customer support</span></li>
+                        <li class="d-flex gap-2 align-items-start mb-0"><span class="icon rounded-circle position-relative mt-1"><i class="bi bi-check"></i></span><span>Access to exclusive investment opportunities</span></li>
+                        <li class="d-flex gap-2 align-items-start mb-0"><span class="icon rounded-circle position-relative mt-1"><i class="bi bi-check"></i></span><span>AI-driven financial recommendations</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End Pricing-->
+{% endblock %}
