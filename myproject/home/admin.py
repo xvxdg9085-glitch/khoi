@@ -4,8 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models.customuser import CustomUser
 from .models.post import Post
-
-admin.site.register(Post)
+from .models.product import Product, ProductCategory, ProductImage
 
 
 class CustomUserAdmin(UserAdmin):
@@ -30,4 +29,38 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "is_active", "created_at")
+    search_fields = ("name",)
+    list_filter = ("is_active", "created_at")
+
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 1
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "stock", "discount",
+                    "category", "is_featured", "is_active")
+    search_fields = ("name",)
+    list_filter = ("category", "is_active", "is_featured")
+    inlines = [ProductImageInline]
+@admin.register(ProductImage)
+
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ("product", "image", "uploaded_at", "is_active")
+
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'is_staff', 'is_active')
+    search_fields = ('username', 'email')
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author')
+    search_fields = ('title', 'content')

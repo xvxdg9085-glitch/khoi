@@ -87,16 +87,17 @@ License: https://freebootstrap.net/license
               
               <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link scroll-link active" aria-current="page" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link scroll-link" href="about">About</a></li>
-                <li class="nav-item"><a class="nav-link scroll-link" href="pricing">Pricing</a></li>
-                <li class="nav-item"><a class="nav-link scroll-link" href="how-it-works">How It Works</a></li>
-                <li class="nav-item"><a class="nav-link scroll-link" href="#services">Services</a></li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown <i class="bi bi-chevron-down"></i></a>
+                <li class="nav-item"><a class="nav-link scroll-link" href="/about">About</a></li>
+                <li class="nav-item"><a class="nav-link scroll-link" href="/pricing">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link scroll-link" href="/how-it-works">How It Works</a></li>
+                <li class="nav-item"><a class="nav-link scroll-link" href="/categories">Products</a></li>
+                <li class="nav-item"><a class="nav-link scroll-link" href="/services">Services</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown features <i class="bi bi-chevron-down"></i></a>
                   
                   <ul class="dropdown-menu">
-                    <li><a class="nav-link scroll-link dropdown-item" href="faq/">FAQ</a></li>
-                    <li><a class="nav-link scroll-link dropdown-item" href="#services">Services</a></li>
-                    <li><a class="nav-link scroll-link dropdown-item" href="#pricing">Pricing</a></li>
+                    <li><a class="nav-link scroll-link dropdown-item" href="/faq">FAQ</a></li>
+                    <li><a class="nav-link scroll-link dropdown-item" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scroll-link dropdown-item" href="#users_comment">Users_comment</a></li>
                     <li class="nav-item dropstart"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropstart <i class="bi bi-chevron-right"></i></a>
                       <ul class="dropdown-menu">
                         <li><a class="nav-link scroll-link dropdown-item" href="#services">Services</a></li>
@@ -120,7 +121,7 @@ License: https://freebootstrap.net/license
                   </ul>
                   
                 </li>
-                <li class="nav-item"><a class="nav-link scroll-link" href="#contact">Contact</a></li>
+                
               </ul>
               
             </div>
@@ -128,23 +129,24 @@ License: https://freebootstrap.net/license
           <!-- End offcanvas-->
           
           <div class="ms-auto w-auto">
-            
-            
-            <div class="header-social d-flex align-items-center gap-1"><a class="btn btn-primary py-2" href="#">Get Started</a>
-              
-              <button class="fbs__net-navbar-toggler justify-content-center align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#fbs__net-navbars" aria-controls="fbs__net-navbars" aria-label="Toggle navigation" aria-expanded="false">
-                <svg class="fbs__net-icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="21" x2="3" y1="6" y2="6"></line>
-                  <line x1="15" x2="3" y1="12" y2="12"></line>
-                  <line x1="17" x2="3" y1="18" y2="18"></line>
-                </svg>
-                <svg class="fbs__net-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </button>
-              
-            </div>
+          <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
+             {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <span class="nav-link" style="color: #000000; font-weight: bold; ">Hi {{ user.username }}</span>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'signup' %}" class="nav-link {% if request.resolver_match.url_name == 'signup' %}active{% endif %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'signin' %}" class="nav-link {% if request.resolver_match.url_name == 'signin' %}active{% endif %}">Sign In</a>
+                </li>
+              {% endif %}
+          </ul>
+
             
           </div>
         </div>
@@ -193,7 +195,7 @@ License: https://freebootstrap.net/license
                     <h3 class="mb-3">Company</h3>
                     <ul class="list-unstyled">
                       <li><a href="page-about.html">Leadership</a></li>
-                      <li><a href="post/5/">Careers <span class="badge ms-1">we're hiring</span></a></li>
+                      <li><a href="post/6">Careers <span class="badge ms-1">we're hiring</span></a></li>
                       <li><a href="page-case-studies.html">Case Studies</a></li>
                       <li><a href="page-terms-conditions.html">Terms &amp; Conditions</a></li>
                       <li><a href="page-privacy-policy.html">Privacy Policy</a></li>

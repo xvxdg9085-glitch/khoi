@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% load static %}
+<!-- prettier-ignore -->
+{% block title %}FAQ {%endblock %}
+<!-- prettier-ignore -->
+{% block content %}
+<br><br><br><br><br><br>
+<div class="container" style="display: flex; justify-content: space-around;align-items: start;">
+<div class="container" style="display: flex; flex-direction: column;">
+<h1 style="display: flex; flex: start; color: red;">OOPS!</h1>
+<h2 style="display: flex; flex: start;">404 - PAGE NOT FOUND</h2>
+</div>
+<img src="{% static 'images/404_img.jpg' %}" alt="404" style="width: 50%; height: 50%; margin-bottom: 50px;">
+<a href="{% url 'home' %}" class="btn">Go to Home</a>
+</div>
+{% endblock %}

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 def index_view(request):
     return render(request, 'index.html')
@@ -13,3 +15,10 @@ def about(request):
     return render(request, 'about.html')
 def faq(request):
     return render(request, 'faq.html')
+def services(request):
+    return render(request, 'services.html')
+def error_404_view(request, exception=None):
+    return render(request, '404.html', status=404)
+def logout_view(request):
+    logout(request)
+    return redirect('signin')

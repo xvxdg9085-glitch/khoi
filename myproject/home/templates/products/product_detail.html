@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}  {# để format giá #}
+{% block title %}
+Product Detail
+{% endblock %}
+{% block content %}
+
+<div class="container py-5 hero__v6">
+    <div class="row g-4">
+        <div class="col-md-4">
+            {% include "products/_product_images.html" %}
+        </div>
+        <!-- Cột phải: Thông tin -->
+        <div class="col-md-8">
+        <h2 class="fw-bold mb-3">{{ product.name }}</h2>
+
+        <div class="mb-3">
+            {% if product.discount %}
+            <p class="fw-bold text-danger fs-4 mb-1">
+            {{ product.discounted_price|currency }}
+            </p>
+            <p class="text-muted text-decoration-line-through mb-1">
+            {{ product.price|currency }}
+            </p>
+            <span class="badge bg-success">-{{ product.discount }}%</span>
+            {% else %}
+            <p class="fw-bold text-primary fs-4">{{ product.price|currency }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label for="quantity" class="me-2 fw-semibold">Quantity:</label>
+            <div class="input-group" style="width: 160px;">
+                <button class="btn btn-outline-secondary main-color" type="button" id="button-decrease">-</button>
+                <input type="number" id="quantity" name="quantity" class="form-control text-center" value="1" min="1" >
+                <button class="btn btn-outline-secondary main-color" type="button" id="button-increase">+</button>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg mb-4"> Add to Cart</button>
+
+        <div>
+            <h5 class="fw-semibold">Description</h5>
+            <div class="text-muted">{{ product.description|safe }}</div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const decreaseBtn = document.getElementById('button-decrease');
+    const increaseBtn = document.getElementById('button-increase');
+    const quantityInput = document.getElementById('quantity');
+
+    decreaseBtn.addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) quantityInput.value = value - 1;
+    });
+
+    increaseBtn.addEventListener('click', () => {
+        let value = parseInt(quantityInput.value);
+        if ( value < 10) quantityInput.value = value + 1;
+    });
+    //always check if value > 10 then set to 10 and if value < 1 then set to 1
+    quantityInput.addEventListener('input', () => {
+        let value = parseInt(quantityInput.value);
+        if (value > 10) quantityInput.value = 10;
+        if (value < 1) quantityInput.value = 1;
+        if (isNaN(value)) quantityInput.value = 1;
+    });
+</script>
+{% endblock %}

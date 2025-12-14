@@ -1,0 +1,55 @@
+<div class="card shadow-sm">
+  <div class="ratio ratio-1x1">
+    <img
+      id="mainImage"
+      src="{{ product.main_image.url }}"
+      class="card-img-top object-fit-cover rounded"
+      alt="{{ product.name }}"
+      data-main="{{ product.main_image.url }}"
+    />
+  </div>
+</div>
+
+{% if product.main_image or images %}
+<div class="d-flex flex-wrap gap-2 mt-3" id="thumbnailContainer">
+  <!-- Thumbnail cho ảnh chính -->
+  {% if product.main_image %}
+  <div class="ratio ratio-1x1" style="width: 80px; cursor: pointer;">
+    <img
+      src="{{ product.main_image.url }}"
+      class="img-thumbnail object-fit-cover border-success"
+      alt="Main image"
+      onclick="changeImage(this)"
+    />
+  </div>
+  {% endif %}
+
+  <!-- Thumbnail cho ảnh phụ -->
+  {% for img in images %}
+  <div class="ratio ratio-1x1" style="width: 80px; cursor: pointer;">
+    <img
+      src="{{ img.image.url }}"
+      class="img-thumbnail object-fit-cover"
+      alt="thumbnail"
+      onclick="changeImage(this)"
+    />
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  function changeImage(clickedImg) {
+    const mainImage = document.getElementById("mainImage");
+    const thumbnails = document.querySelectorAll("#thumbnailContainer img");
+
+    // Cập nhật ảnh chính
+    mainImage.src = clickedImg.src;
+
+    // Xóa border-success khỏi tất cả thumbnail
+    thumbnails.forEach(img => img.classList.remove("border-success"));
+
+    // Thêm border-success cho ảnh đang được chọn
+    clickedImg.classList.add("border-success");
+  }
+</script>

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 
 User = get_user_model()
 
@@ -36,3 +36,24 @@ class CustomerRegistrationForm(UserCreationForm):
             if field.widget.attrs.get("class") is None:
                 field.widget.attrs["class"] = "form-control"
             field.required = False  # Make all fields optional (can remove this if not needed)
+class CustomerLoginForm(forms.Form):
+    username = forms.CharField(
+        label="Email",
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Enter your email"})
+    )
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Enter your password"})
+    )
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if not user:
+                raise forms.ValidationError("Invalid username or password.")
+        return cleaned_data

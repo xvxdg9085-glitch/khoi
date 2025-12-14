@@ -8,8 +8,8 @@ def signup_view(request):
         form = CustomerRegistrationForm(request.POST)
         if form.is_valid():
             form.save()  # Tạo mới khách hàng
-            return redirect('login')  # Điều hướng đến trang đăng nhập
+            return redirect('signin')  # Điều hướng đến trang đăng nhập
     else:
         form = CustomerRegistrationForm()
 
-    return render(request, 'home/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
